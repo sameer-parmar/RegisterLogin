@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/vi/employee")
+@RequestMapping("api/user")
 
 
 
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
-    @PostMapping(path="/save")
+    @PostMapping(path="/register")
     public String saveEmployee(@RequestBody EmployeeDto employeeDto){
         String id=employeeService.addEmployee(employeeDto);
         return id;
@@ -27,5 +27,15 @@ public class EmployeeController {
     {
         LoginResponse loginResponse=employeeService.loginEmployee(loginDto);
         return ResponseEntity.ok(loginResponse);
+    }
+    @GetMapping(path="/fetch/{username}")
+    public ResponseEntity<?> fetchEmployee(@PathVariable String username){
+        EmployeeDto employeeDto = employeeService.fetchEmployeeByUsername(username);
+        if(employeeDto!=null){
+            return ResponseEntity.ok(employeeDto);
+        }else{
+            return ResponseEntity.status(404).body("no user found");
+        }
+
     }
 }

@@ -16,9 +16,21 @@ public class EmployeeDto {
         this.email = email;
         this.password = password;
     }
+    public EmployeeDto(int employeeid, String employeename) {
+        this.employeeid = employeeid;
+        this.employeename = employeename;
+        this.email = null;
+        this.password = null;
+    }
 
-//    public EmployeeDto() {
-//    }
+    public EmployeeDto() {
+        this.employeeid = 0;
+        this.employeename = null;
+        this.email = null;
+        this.password = null;
+    }
+
+
 
     public int getEmployeeid() {
         return employeeid;
@@ -48,9 +60,9 @@ public class EmployeeDto {
         return password;
     }
 
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {

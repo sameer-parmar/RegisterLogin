@@ -8,4 +8,5 @@ public interface EmployeeService {
     String addEmployee(EmployeeDto employeeDto);
 
     LoginResponse loginEmployee(LoginDto loginDto);
+    EmployeeDto fetchEmployeeByUsername(String username);
 }

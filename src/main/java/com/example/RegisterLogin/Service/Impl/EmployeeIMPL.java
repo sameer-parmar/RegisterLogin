@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.Optional;
 
 @Service
@@ -55,6 +56,19 @@ public class EmployeeIMPL implements EmployeeService {
         else {
             return new LoginResponse("Email not exists" ,false);
         }
+    }
+
+    @Override
+    public EmployeeDto fetchEmployeeByUsername(String username) {
+       System.out.println(username+"fetching");
+        Employee employee =employeeRepo.findByEmployeename(username);
+        if(employee==null){
+            System.out.println("No user found"+username);
+            return null;
+        }
+        System.out.println("user found"+employee);
+        return new EmployeeDto(employee.getEmployeeid(), employee.getEmployeename());
+
     }
 
 }
